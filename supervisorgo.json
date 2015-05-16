@@ -1,0 +1,20 @@
+{
+	"Procs": [
+		{
+			"Name": "builder",
+			"DisplayName": "Go Builder",
+			"Description": "Run the Go Builder",
+
+			"Dir": "/tmp",
+			"Exec": "bash",
+			"Args": ["-c","while true; do echo hello; sleep 5; exit 1; done"],
+			"Env": [
+			],
+
+			"Stderr": "sample-err.log",
+			"Stdout": "sample-out.log",
+			"Interval": 1000,
+			"Retry": 3
+		}
+	]
+}
