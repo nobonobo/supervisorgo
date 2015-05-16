@@ -71,3 +71,10 @@ supervisorctl status target-name
 supervisorctl start target-name
 supervisorctl stop target-name
 ```
+
+## TODO
+
+- add exec-user setting
+- use custom stop signal
+- sock default-path to /var/run/supervisorgo.sock
+- windows/linux/os-x install test
