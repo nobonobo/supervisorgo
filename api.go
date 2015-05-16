@@ -39,3 +39,23 @@ func (c *Controller) Status(target string, reply *[]Info) error {
 	}
 	return nil
 }
+
+func (c *Controller) Start(target string, reply *Status) error {
+	proc := c.manager.procs[target]
+	if proc == nil {
+		return fmt.Errorf("unknown proc name: %s", target)
+	}
+	c.manager.Run(proc.Name())
+	*reply = proc.Status()
+	return nil
+}
+
+func (c *Controller) Stop(target string, reply *Status) error {
+	proc := c.manager.procs[target]
+	if proc == nil {
+		return fmt.Errorf("unknown proc name: %s", target)
+	}
+	proc.Stop()
+	*reply = proc.Status()
+	return nil
+}

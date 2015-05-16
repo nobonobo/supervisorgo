@@ -46,6 +46,29 @@ func run() int {
 		for _, v := range reply {
 			status.Execute(os.Stdout, v)
 		}
+	case "start":
+		if flag.NArg() < 2 {
+			log.Println(fmt.Errorf("argument target proc-name needed"))
+			return 1
+		}
+		target := flag.Arg(1)
+		reply := supervisorgo.STOPPED
+		if err := controller.Call("Start", target, &reply); err != nil {
+			log.Println(err)
+			return 1
+		}
+	case "stop":
+		if flag.NArg() < 2 {
+			log.Println(fmt.Errorf("argument target proc-name needed"))
+			return 1
+		}
+		target := flag.Arg(1)
+		reply := supervisorgo.STOPPED
+		if err := controller.Call("Stop", target, &reply); err != nil {
+			log.Println(err)
+			return 1
+		}
+
 	default:
 		log.Println(fmt.Errorf("unknown sub command: %s", flag.Arg(0)))
 		return 1

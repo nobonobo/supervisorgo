@@ -206,6 +206,8 @@ func (p *Process) isStopping() (res bool) {
 
 // Start ...
 func (p *Process) Start() <-chan error {
+	p.retry = 0
+	p.first = time.Time{}
 	ech := make(chan error, 1)
 	if p.Status() != STOPPED {
 		ech <- fmt.Errorf("already running: %s", p.Name())
@@ -230,6 +232,9 @@ func (p *Process) Start() <-chan error {
 			}
 			p.setStatus(RUNNING)
 			if err := p.run(); err != nil {
+				if p.Status() == STOPPED {
+					return
+				}
 				ech <- err
 			}
 			if p.isStopping() {
