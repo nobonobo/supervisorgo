@@ -15,13 +15,6 @@ supervisord like golang implement
 go get -u github.com/supervisorgo/cmd/...
 ```
 
-## usage
-
-foreground mode(for debug run)
-```
-supervisorgo -c config.json
-```
-
 ## configuration json file
 
 default-path = "execute-parent-dir/supervisorgo.json"
@@ -51,7 +44,14 @@ sample
 }
 ```
 
-supervisorgo daemon control
+## usage
+
+### foreground mode(for debug run)
+```
+supervisorgo -c config.json
+```
+
+### supervisorgo daemon control
 ```
 supervisorgo start
 supervisorgo stop
@@ -60,7 +60,7 @@ sudo supervisorgo install   # daemon install to system
 sudo supervisorgo uninstall # daemon uninstall from system
 ```
 
-usage for supervisorgoctl
+### usage for supervisorgoctl
 
 supervisorctl [-c unix:./supervisorgo.sock] subcommand [args...]
 
