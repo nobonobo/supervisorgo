@@ -1,3 +1,8 @@
+# BEWARE
+
+This tool has not been maintained for a while.
+Please use https://immortal.run instead.
+
 # supervisorgo
 
 supervisord like golang implement
